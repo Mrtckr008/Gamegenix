@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="search_tint_color">#686868</color>
+
+    <color name="palette1">#283c63</color>
+    <color name="palette2">#878ecd</color>
+    <color name="palette3">#fbe8d3</color>
+    <color name="palette4">#f85f73</color>
+
+    <color name="palette1_alpha">#88283c63</color>
+    <color name="palette2_alpha">#88878ecd</color>
+    <color name="palette3_alpha">#88fbe8d3</color>
+    <color name="palette4_alpha">#88f85f73</color>
+
+    <color name="background">#F3F5F9</color>
 </resources>

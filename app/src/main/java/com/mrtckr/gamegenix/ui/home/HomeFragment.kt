@@ -1,39 +1,69 @@
 package com.mrtckr.gamegenix.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
 import com.mrtckr.gamegenix.databinding.FragmentHomeBinding
+import com.mrtckr.gamegenix.model.GameResult
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
+class HomeFragment @Inject constructor(
+    private val gameRecyclerAdapter: GameRecyclerAdapter)
+    : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
 
     override val layoutRes: Int = R.layout.fragment_home
     override val viewModel: HomeViewModel by viewModels()
 
+    private var paginationCounter = 1
+    private var gameList : ArrayList<GameResult> = arrayListOf()
     override fun observeViewModel() {
-
-    }
-
-    override fun viewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.button.setOnClickListener {
-            viewModel.getGames()
-        }
-        viewModel.gameList.observe(viewLifecycleOwner, Observer {
-            println(it)
+        viewModel.gameList.observe(viewLifecycleOwner, Observer {resultData ->
+            resultData.toData()?.results?.let { result -> gameList.addAll(result) }
+            gameRecyclerAdapter.gameResult = gameList
+            gameRecyclerAdapter.notifyDataSetChanged()
         })
     }
 
+    override fun viewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getGames(paginationCounter,"")
+        binding.gameListRecyclerView.adapter = gameRecyclerAdapter
+        binding.gameListRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+
+        gameRecyclerAdapter.setOnItemClickListener {
+
+        }
+
+        binding.gameListRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    viewModel.getGames(++paginationCounter,"")
+                }
+            }
+        })
+
+        binding.searchCardView.setOnClickListener {
+            val extras = FragmentNavigatorExtras(
+                binding.searchCardView to "transition_name"
+            )
+            findNavController().navigate(
+                R.id.action_navigation_home_to_searchFragment,null,null,extras
+            )
+        }
+    }
+
     override fun onDestroyView() {
+        gameList.clear()
         super.onDestroyView()
     }
 }

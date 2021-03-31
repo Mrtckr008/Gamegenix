@@ -120,7 +120,7 @@ class Game {
 
     @SerializedName("results")
     @Expose
-    var results: List<Result>? = null
+    var results: List<GameResult>? = null
 
 }
 
@@ -249,7 +249,7 @@ class Rating {
 }
 
 @Generated("jsonschema2pojo")
-class Result {
+class GameResult {
     @SerializedName("id")
     @Expose
     var id: Int? = null

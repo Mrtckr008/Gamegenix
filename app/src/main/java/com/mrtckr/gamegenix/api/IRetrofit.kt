@@ -8,7 +8,9 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface IRetrofit {
-    @Headers("X-RapidAPI-Key: defb7e6f56msh8b85de4b398a3b0p1e4319jsn38afecee7dd5")
-    @GET("/games")
-    suspend fun getGames(): Response<Game>
+    @Headers("key: 20ed3030b4544ac88f56e71e66ac9317")
+    @GET("games")
+    suspend fun getGames(@Query("page") page: Int,
+                         @Query("search") search: String
+                         ): Response<Game>
 }

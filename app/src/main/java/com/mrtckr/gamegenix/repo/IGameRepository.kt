@@ -6,5 +6,5 @@ import com.mrtckr.gamegenix.model.Game
 
 interface IGameRepository {
 
-    suspend fun getGames(): ResultData<Game>
+    suspend fun getGames(page: Int, query:String): ResultData<Game>
 }
