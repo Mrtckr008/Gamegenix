@@ -9,9 +9,9 @@ import javax.inject.Inject
 class GameRepository @Inject constructor(
     private val retrofitApi: IRetrofit
 ): IGameRepository {
-    override suspend fun getGames(page: Int,query:String): ResultData<Game> {
+    override suspend fun getGames(page: Int,query:String, sortingKeyword: String): ResultData<Game> {
         return try {
-            val response = retrofitApi.getGames(page,query)
+            val response = retrofitApi.getGames(page,query,sortingKeyword)
             if (response.isSuccessful){
                 response.body()?.let {
                     return@let ResultData.Success(it)

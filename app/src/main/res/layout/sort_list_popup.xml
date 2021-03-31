@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/sortingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sorting"
+        android:textColor="@color/palette4"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/sortingDefault"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortingTextView">
+
+        <RadioButton
+            android:id="@+id/sortingDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/by_default" />
+
+        <RadioButton
+            android:id="@+id/sortingPopularity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/by_popularity" />
+
+        <RadioButton
+            android:id="@+id/sortingRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/by_rating" />
+
+        <RadioButton
+            android:id="@+id/sortingReleased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/by_released" />
+
+        <RadioButton
+            android:id="@+id/sortingUpdated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/by_updated" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/sortingCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/palette4"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+</androidx.constraintlayout.widget.ConstraintLayout>

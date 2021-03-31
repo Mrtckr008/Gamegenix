@@ -5,6 +5,16 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <!-- Common -->
+    <string name="cancel">Vazgeç</string>
+
     <!-- Home Fragment -->
     <string name="search_game_text">Oyun Ara..</string>
+
+    <!-- Sorting -->
+    <string name="by_default">Varsayılan</string>
+    <string name="by_released">Yayınlanma Tarihi</string>
+    <string name="by_rating">Puan</string>
+    <string name="by_popularity">Popülerlik</string>
+    <string name="by_updated">Güncellenme Tarihi</string>
 </resources>

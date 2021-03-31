@@ -13,6 +13,7 @@ import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
 import com.mrtckr.gamegenix.databinding.FragmentHomeBinding
 import com.mrtckr.gamegenix.model.GameResult
+import com.mrtckr.gamegenix.model.SortingType
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,7 +36,7 @@ class HomeFragment @Inject constructor(
     }
 
     override fun viewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getGames(paginationCounter,"")
+        viewModel.getGames(paginationCounter,"",SortingType.Default)
         binding.gameListRecyclerView.adapter = gameRecyclerAdapter
         binding.gameListRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
 
@@ -47,7 +48,7 @@ class HomeFragment @Inject constructor(
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
-                    viewModel.getGames(++paginationCounter,"")
+                    viewModel.getGames(++paginationCounter,"",SortingType.Default)
                 }
             }
         })

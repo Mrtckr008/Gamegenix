@@ -11,6 +11,7 @@ interface IRetrofit {
     @Headers("key: 20ed3030b4544ac88f56e71e66ac9317")
     @GET("games")
     suspend fun getGames(@Query("page") page: Int,
-                         @Query("search") search: String
+                         @Query("search") search: String,
+                         @Query("ordering") ordering: String
                          ): Response<Game>
 }
