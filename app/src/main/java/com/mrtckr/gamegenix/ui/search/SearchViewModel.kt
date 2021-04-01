@@ -17,10 +17,12 @@ class SearchViewModel @ViewModelInject constructor(private val repository: IGame
         get() = games
 
     fun getGames(page: Int, query: String, sortingType: SortingType) {
-        games.value = ResultData.Loading()
-        viewModelScope.launch {
-            val response = repository.getGames(page, query, sortingType.keyword)
-            games.postValue(response)
+        if(page > 0) {  // Writing this condition for testing ViewModel.
+            games.value = ResultData.Loading()
+            viewModelScope.launch {
+                val response = repository.getGames(page, query, sortingType.keyword)
+                games.postValue(response)
+            }
         }
     }
 }

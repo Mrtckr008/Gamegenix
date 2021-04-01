@@ -10,8 +10,10 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mrtckr.gamegenix.R
@@ -65,7 +67,6 @@ class SearchFragment @Inject constructor(
                 paginationCounter = 1
                 performSearch()
                 handled = true
-                requireActivity().hideKeyboard()
             }
             handled
         }
@@ -89,6 +90,14 @@ class SearchFragment @Inject constructor(
                 }
             }
         })
+
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(callBack)
     }
 
     private fun performFilter() {
@@ -132,6 +141,7 @@ class SearchFragment @Inject constructor(
                 }
             }
             performSearch()
+            mAlertDialog.dismiss()
         }
 
         mDialogView.findViewById<Button>(R.id.sortingCancel).setOnClickListener {
@@ -140,6 +150,7 @@ class SearchFragment @Inject constructor(
     }
 
     private fun performSearch(){
+        requireActivity().hideKeyboard()
         viewModel.getGames(paginationCounter,lastQuery,lastSortingType)
     }
 }
