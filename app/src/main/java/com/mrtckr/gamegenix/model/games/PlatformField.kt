@@ -1,11 +1,11 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import javax.annotation.Generated
 
 @Generated("jsonschema2pojo")
-class Genre {
+class PlatformField {
     @SerializedName("id")
     @Expose
     var id: Int? = null
@@ -17,13 +17,5 @@ class Genre {
     @SerializedName("slug")
     @Expose
     var slug: String? = null
-
-    @SerializedName("games_count")
-    @Expose
-    var gamesCount: Int? = null
-
-    @SerializedName("image_background")
-    @Expose
-    var imageBackground: String? = null
 
 }

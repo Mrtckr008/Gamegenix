@@ -1,4 +1,4 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

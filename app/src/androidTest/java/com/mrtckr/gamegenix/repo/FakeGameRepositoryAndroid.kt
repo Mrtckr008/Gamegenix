@@ -2,7 +2,7 @@ package com.mrtckr.gamegenix.repo
 
 import androidx.lifecycle.MutableLiveData
 import com.mrtckr.gamegenix.common.ResultData
-import com.mrtckr.gamegenix.model.Game
+import com.mrtckr.gamegenix.model.games.Game
 
 class FakeGameRepositoryAndroid : IGameRepository {
     private val gameData = Game()

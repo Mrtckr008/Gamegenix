@@ -1,21 +1,18 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.mrtckr.gamegenix.model.games.Shopping
 import javax.annotation.Generated
 
 @Generated("jsonschema2pojo")
-class PlatformField {
+data class Store (
     @SerializedName("id")
     @Expose
-    var id: Int? = null
+    var id: Int? = null,
 
-    @SerializedName("name")
+    @SerializedName("store")
     @Expose
-    var name: String? = null
+    var store: Shopping? = null
 
-    @SerializedName("slug")
-    @Expose
-    var slug: String? = null
-
-}
+)

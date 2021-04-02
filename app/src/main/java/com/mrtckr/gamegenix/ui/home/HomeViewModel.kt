@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mrtckr.gamegenix.common.BaseViewModel
 import com.mrtckr.gamegenix.common.ResultData
-import com.mrtckr.gamegenix.model.Game
-import com.mrtckr.gamegenix.model.SortingType
+import com.mrtckr.gamegenix.model.games.Game
+import com.mrtckr.gamegenix.model.games.SortingType
 import com.mrtckr.gamegenix.repo.IGameRepository
 import kotlinx.coroutines.launch
 

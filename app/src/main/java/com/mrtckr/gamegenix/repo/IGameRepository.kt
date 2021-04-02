@@ -1,8 +1,7 @@
 package com.mrtckr.gamegenix.repo
 
-import androidx.lifecycle.LiveData
 import com.mrtckr.gamegenix.common.ResultData
-import com.mrtckr.gamegenix.model.Game
+import com.mrtckr.gamegenix.model.games.Game
 
 interface IGameRepository {
 

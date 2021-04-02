@@ -1,8 +1,7 @@
 package com.mrtckr.gamegenix.api
 
-import com.mrtckr.gamegenix.model.Game
+import com.mrtckr.gamegenix.model.games.Game
 import com.mrtckr.gamegenix.model.genres.GenresDetail
-import com.mrtckr.gamegenix.util.Util.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers

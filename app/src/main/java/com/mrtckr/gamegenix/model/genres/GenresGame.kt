@@ -2,7 +2,6 @@ package com.mrtckr.gamegenix.model.genres
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.mrtckr.gamegenix.model.Game
 import javax.annotation.Generated
 
 

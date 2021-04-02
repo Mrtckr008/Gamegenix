@@ -1,4 +1,4 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 enum class SortingType (val keyword:String) {
     Default(""),

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.gone
-import com.mrtckr.gamegenix.model.GameResult
+import com.mrtckr.gamegenix.model.games.GameResult
 import javax.inject.Inject
 
 class GameRecyclerAdapter @Inject constructor(

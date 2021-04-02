@@ -1,11 +1,11 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import javax.annotation.Generated
 
 @Generated("jsonschema2pojo")
-data class ChildPlatform (
+data class Shopping (
     @SerializedName("id")
     @Expose
     var id: Int? = null,
@@ -18,17 +18,9 @@ data class ChildPlatform (
     @Expose
     var slug: String? = null,
 
-    @SerializedName("image")
+    @SerializedName("domain")
     @Expose
-    var image: Any? = null,
-
-    @SerializedName("year_end")
-    @Expose
-    var yearEnd: Any? = null,
-
-    @SerializedName("year_start")
-    @Expose
-    var yearStart: Any? = null,
+    var domain: String? = null,
 
     @SerializedName("games_count")
     @Expose

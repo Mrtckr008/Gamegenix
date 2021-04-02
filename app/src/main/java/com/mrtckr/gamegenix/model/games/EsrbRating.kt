@@ -1,17 +1,21 @@
-package com.mrtckr.gamegenix.model
+package com.mrtckr.gamegenix.model.games
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import javax.annotation.Generated
 
 @Generated("jsonschema2pojo")
-data class Store (
+data class EsrbRating (
     @SerializedName("id")
     @Expose
     var id: Int? = null,
 
-    @SerializedName("store")
+    @SerializedName("name")
     @Expose
-    var store: Shopping? = null
+    var name: String? = null,
+
+    @SerializedName("slug")
+    @Expose
+    var slug: String? = null
 
 )

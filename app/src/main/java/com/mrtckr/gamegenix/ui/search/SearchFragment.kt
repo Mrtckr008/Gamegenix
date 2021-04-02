@@ -20,8 +20,8 @@ import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
 import com.mrtckr.gamegenix.common.hideKeyboard
 import com.mrtckr.gamegenix.databinding.FragmentSearchBinding
-import com.mrtckr.gamegenix.model.GameResult
-import com.mrtckr.gamegenix.model.SortingType
+import com.mrtckr.gamegenix.model.games.GameResult
+import com.mrtckr.gamegenix.model.games.SortingType
 import com.mrtckr.gamegenix.ui.home.GameRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

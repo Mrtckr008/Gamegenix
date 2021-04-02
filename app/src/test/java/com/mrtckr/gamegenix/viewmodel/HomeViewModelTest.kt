@@ -5,8 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import com.mrtckr.gamegenix.MainCoroutineRule
 import com.mrtckr.gamegenix.common.ResultData
 import com.mrtckr.gamegenix.getOrAwaitValueTest
-import com.mrtckr.gamegenix.model.Game
-import com.mrtckr.gamegenix.model.SortingType
+import com.mrtckr.gamegenix.model.games.SortingType
 import com.mrtckr.gamegenix.repo.FakeGameRepository
 import com.mrtckr.gamegenix.ui.home.HomeViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,14 +31,14 @@ class HomeViewModelTest  {
 
     @Test
     fun `call game with page is less than 1`(){
-        viewModel.getGames(0,"",SortingType.Popularity)
+        viewModel.getGames(0,"", SortingType.Popularity)
         val value = viewModel.gameList.getOrAwaitValueTest()
         assertThat(value).isEqualTo(ResultData.Failed())
     }
 
     @Test
     fun `call game with page is more than 0`(){
-        viewModel.getGames(3,"",SortingType.Popularity)
+        viewModel.getGames(3,"", SortingType.Popularity)
         val value = viewModel.gameList.getOrAwaitValueTest()
         assertThat(value).isNotEqualTo(ResultData.Failed())
     }

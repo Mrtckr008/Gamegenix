@@ -2,9 +2,7 @@ package com.mrtckr.gamegenix.repo
 
 import com.mrtckr.gamegenix.api.IRetrofit
 import com.mrtckr.gamegenix.common.ResultData
-import com.mrtckr.gamegenix.model.Game
 import com.mrtckr.gamegenix.model.genres.GenresDetail
-import com.mrtckr.gamegenix.model.genres.GenresGame
 import java.lang.Exception
 import javax.inject.Inject
 
