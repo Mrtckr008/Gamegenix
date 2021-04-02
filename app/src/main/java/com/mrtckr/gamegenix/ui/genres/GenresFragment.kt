@@ -18,23 +18,23 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class GenresFragment @Inject constructor(
-    private val gameRecyclerAdapter: GenresGameRecyclerAdapter
-)
-    : BaseFragment<GenresViewModel, FragmentGenresBinding>(){
+    private val gameRecyclerAdapter: GenresGameRecyclerAdapter,
+    private val gameSectionedAdapter: GenresSectionedAdapter
+) : BaseFragment<GenresViewModel, FragmentGenresBinding>() {
 
     override val layoutRes: Int = R.layout.fragment_genres
     override val viewModel: GenresViewModel by viewModels()
-    private var genresList : ArrayList<GenresGame> = arrayListOf()
-    private var genresNameList : ArrayList<String> = arrayListOf()
+    private var genresList: ArrayList<GenresGame> = arrayListOf()
+    private var genresNameList: ArrayList<String> = arrayListOf()
     override fun observeViewModel() {
-        viewModel.genresList.observe(viewLifecycleOwner, Observer {resultData ->
+        viewModel.genresList.observe(viewLifecycleOwner, Observer { resultData ->
             resultData.toData()?.results?.forEach {
                 genresNameList.add(it.name.toString())
             }
             resultData.toData()?.results?.forEach {
                 genresList.addAll(it.games!!)
             }
-            setSectionAdapter(genresNameList,genresList)
+            resultData.toData()?.let { setSectionAdapter(it,genresNameList, genresList) }
         })
     }
 
@@ -43,7 +43,7 @@ class GenresFragment @Inject constructor(
 
         binding.genreSectionRecyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(),1)
+            layoutManager = GridLayoutManager(requireContext(), 1)
             adapter = gameRecyclerAdapter
         }
 
@@ -52,27 +52,28 @@ class GenresFragment @Inject constructor(
         }
     }
 
-    private fun setSectionAdapter(list: List<String>, gameList: List<GenresGame>){
+    private fun setSectionAdapter(genresDetail: GenresDetail, list: List<String>, gameList: List<GenresGame>) {
         val sections: ArrayList<GenresSectionedAdapter.Section> = arrayListOf()
         val items: ArrayList<String> = arrayListOf()
 
-        val mSectionedAdapter =
-            GenresSectionedAdapter(
-                this.requireContext(),
-                R.layout.genre_game_section_item_list,
-                R.id.genreText,
-                binding.genreSectionRecyclerView,
-                gameRecyclerAdapter
-            )
-        var offset=0
+        val mSectionedAdapter = gameSectionedAdapter
+
+        gameSectionedAdapter.setup(
+            R.layout.genre_game_section_item_list,
+            R.id.genreText,
+            binding.genreSectionRecyclerView,
+            gameRecyclerAdapter
+        )
+
+        var offset = 0
         list.onEachIndexed { index, entry ->
-            sections.add(GenresSectionedAdapter.Section(offset, entry.toUpperCase(Locale.ROOT)))
+            sections.add(GenresSectionedAdapter.Section(offset, entry.toUpperCase(Locale.ROOT),
+                genresDetail.results?.get(index)?.imageBackground.toString()))
             items.add(entry)
             offset += 6
         }
         mSectionedAdapter.setSections(sections)
         gameRecyclerAdapter.genreGameResult = gameList
-        //Apply this adapter to the RecyclerView
         binding.genreSectionRecyclerView.adapter = mSectionedAdapter
         mSectionedAdapter.notifyDataSetChanged()
         gameRecyclerAdapter.notifyDataSetChanged()

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/_10sdp">
+    android:layout_marginStart="@dimen/_10sdp"
+    android:padding="@dimen/_5sdp">
 
     <ImageView
         android:id="@+id/genreIcon"

@@ -13,7 +13,6 @@ import com.mrtckr.gamegenix.model.genres.GenresGame
 import javax.inject.Inject
 
 class GenresGameRecyclerAdapter @Inject constructor(
-    private val glide : RequestManager
 ) : RecyclerView.Adapter<GenresGameRecyclerAdapter.ImageViewHolder>() {
 
     private var onItemClickListener : ((id: String,imageView: View, transitionName: String) -> Unit)? = null

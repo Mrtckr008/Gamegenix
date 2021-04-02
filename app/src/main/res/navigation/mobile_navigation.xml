@@ -16,12 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.mrtckr.gamegenix.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_genres"
         android:name="com.mrtckr.gamegenix.ui.genres.GenresFragment"
         android:label="@string/title_genres"

@@ -21,16 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/genreIcon"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:padding="@dimen/_10sdp"
-                android:tint="@color/palette1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/game_category_icon" />
-
             <TextView
                 android:id="@+id/genreText"
                 android:layout_width="0dp"
@@ -42,8 +32,20 @@
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/genreIcon"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/genreIcon"
-                app:layout_constraintTop_toTopOf="@+id/genreIcon" />
+                app:layout_constraintTop_toTopOf="@+id/genreIcon"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/genreIcon"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:padding="@dimen/_10sdp"
+                android:tint="@color/palette1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/game_category_icon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
