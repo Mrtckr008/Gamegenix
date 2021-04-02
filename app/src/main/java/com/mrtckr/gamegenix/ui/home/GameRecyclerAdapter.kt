@@ -59,7 +59,7 @@ class GameRecyclerAdapter @Inject constructor(
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val gameImage = holder.itemView.findViewById<ImageView>(R.id.gameImage)
         val gameName = holder.itemView.findViewById<TextView>(R.id.gameNameText)
-        val gameGenre = holder.itemView.findViewById<TextView>(R.id.gameGenreText)
+        val gameGenre = holder.itemView.findViewById<TextView>(R.id.genreText)
         val gameRating = holder.itemView.findViewById<TextView>(R.id.gameRatingText)
 
         holder.itemView.apply {

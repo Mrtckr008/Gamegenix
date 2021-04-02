@@ -81,7 +81,7 @@
                 app:layout_constraintTop_toTopOf="@+id/gameImage">
 
                 <TextView
-                    android:id="@+id/gameGenreText"
+                    android:id="@+id/genreText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_4sdp"

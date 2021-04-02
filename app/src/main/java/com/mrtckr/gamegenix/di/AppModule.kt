@@ -6,7 +6,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.api.IRetrofit
 import com.mrtckr.gamegenix.repo.GameRepository
+import com.mrtckr.gamegenix.repo.GenreRepository
 import com.mrtckr.gamegenix.repo.IGameRepository
+import com.mrtckr.gamegenix.repo.IGenreRepository
 import com.mrtckr.gamegenix.util.Util.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -34,7 +36,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun injectNormalRepo(api: IRetrofit) = GameRepository(api) as IGameRepository
+    fun injectGameRepo(api: IRetrofit) = GameRepository(api) as IGameRepository
+
+    @Singleton
+    @Provides
+    fun injectGenreRepo(api: IRetrofit) = GenreRepository(api) as IGenreRepository
 
     @Singleton
     @Provides

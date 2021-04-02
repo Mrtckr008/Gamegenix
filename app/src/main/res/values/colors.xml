@@ -14,11 +14,13 @@
     <color name="palette2">#878ecd</color>
     <color name="palette3">#fbe8d3</color>
     <color name="palette4">#f85f73</color>
+    <color name="palette5">#6BB69B</color>
 
     <color name="palette1_alpha">#88283c63</color>
     <color name="palette2_alpha">#88878ecd</color>
     <color name="palette3_alpha">#88fbe8d3</color>
     <color name="palette4_alpha">#88f85f73</color>
+    <color name="palette5_alpha">#886BB69B</color>
 
     <color name="background">#F3F5F9</color>
 </resources>

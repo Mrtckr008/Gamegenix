@@ -3,7 +3,7 @@
     <string name="app_name">Gamegenix</string>
     <string name="title_home">Ana Ekran</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_genres">Kategoriler</string>
 
     <!-- Common -->
     <string name="cancel">Vazgeç</string>
