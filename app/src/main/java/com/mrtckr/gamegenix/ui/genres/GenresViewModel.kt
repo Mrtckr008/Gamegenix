@@ -17,6 +17,7 @@ class GenresViewModel @ViewModelInject constructor(private val repository: IGenr
         get() = genres
 
     fun getGenres() {
+        genres.value = ResultData.Loading()
         viewModelScope.launch {
             val response = repository.getGenres()
             genres.postValue(response)
