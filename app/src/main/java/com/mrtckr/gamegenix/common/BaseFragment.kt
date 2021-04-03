@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import com.mrtckr.gamegenix.MainActivity
 import com.mrtckr.gamegenix.R
 
 
@@ -94,6 +95,14 @@ abstract class BaseFragment<T : BaseViewModel, B : ViewDataBinding> : Fragment()
     }
 
      */
+
+    fun setToolbarTitle(title: String){
+        (this.requireActivity() as MainActivity).binding.toolbarLayout.labelText = title
+    }
+
+    fun setToolbarBackButtonVisibility(visibility : Int){
+        (this.requireActivity() as MainActivity).binding.toolbarLayout.toolbarBackButton.visibility = visibility
+    }
 
     private fun showErrorDialog(message: String?, callback: () -> Unit = {}) {
         context?.let {

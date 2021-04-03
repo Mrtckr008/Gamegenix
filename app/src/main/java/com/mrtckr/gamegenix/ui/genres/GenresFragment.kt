@@ -78,4 +78,10 @@ class GenresFragment @Inject constructor(
         mSectionedAdapter.notifyDataSetChanged()
         gameRecyclerAdapter.notifyDataSetChanged()
     }
+
+    override fun onResume() {
+        super.onResume()
+        setToolbarTitle(this.requireContext().getString(R.string.app_name))
+        setToolbarBackButtonVisibility(View.GONE)
+    }
 }

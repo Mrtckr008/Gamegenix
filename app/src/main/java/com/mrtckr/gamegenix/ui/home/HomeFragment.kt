@@ -68,4 +68,10 @@ class HomeFragment @Inject constructor(
         gameList.clear()
         super.onDestroyView()
     }
+
+    override fun onResume() {
+        super.onResume()
+        setToolbarTitle(this.requireContext().getString(R.string.app_name))
+        setToolbarBackButtonVisibility(View.GONE)
+    }
 }

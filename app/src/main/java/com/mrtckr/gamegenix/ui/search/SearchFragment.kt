@@ -153,4 +153,10 @@ class SearchFragment @Inject constructor(
         requireActivity().hideKeyboard()
         viewModel.getGames(paginationCounter,lastQuery,lastSortingType)
     }
+
+    override fun onResume() {
+        super.onResume()
+        setToolbarTitle(this.requireContext().getString(R.string.app_name))
+        setToolbarBackButtonVisibility(View.VISIBLE)
+    }
 }
