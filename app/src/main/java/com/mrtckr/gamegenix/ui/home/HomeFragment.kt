@@ -2,6 +2,7 @@ package com.mrtckr.gamegenix.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
+import com.mrtckr.gamegenix.common.ResultData
 import com.mrtckr.gamegenix.databinding.FragmentHomeBinding
 import com.mrtckr.gamegenix.model.games.GameResult
 import com.mrtckr.gamegenix.model.games.SortingType
@@ -28,28 +30,31 @@ class HomeFragment @Inject constructor(
     private var gameList : ArrayList<GameResult> = arrayListOf()
     override fun observeViewModel() {
         viewModel.gameList.observe(viewLifecycleOwner, Observer {resultData ->
-            resultData.toData()?.results?.let { result -> gameList.addAll(result) }
-            gameRecyclerAdapter.gameResult = gameList
-            gameRecyclerAdapter.notifyDataSetChanged()
+            when (resultData) {
+                is ResultData.Success -> {
+                    resultData.toData()?.results?.let { result -> gameList.addAll(result) }
+                    gameRecyclerAdapter.gameResult = gameList
+                    gameRecyclerAdapter.notifyDataSetChanged()
+                }
+                is ResultData.Failed -> {
+                }
+                is ResultData.Loading -> {
+                }
+            }
         })
     }
 
     override fun viewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getGames(paginationCounter,"",
-            SortingType.Default)
+        viewModel.getGames(paginationCounter,"", SortingType.Default)
+
         binding.gameListRecyclerView.adapter = gameRecyclerAdapter
         binding.gameListRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
-
-        gameRecyclerAdapter.setOnItemClickListener {
-
-        }
 
         binding.gameListRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
-                    viewModel.getGames(++paginationCounter,"",
-                        SortingType.Default)
+                    viewModel.getGames(++paginationCounter,"", SortingType.Default)
                 }
             }
         })
@@ -71,6 +76,7 @@ class HomeFragment @Inject constructor(
 
     override fun onResume() {
         super.onResume()
+        setToolbarVisibility(View.VISIBLE)
         setToolbarTitle(this.requireContext().getString(R.string.app_name))
         setToolbarBackButtonVisibility(View.GONE)
     }

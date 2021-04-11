@@ -13,6 +13,7 @@ import com.mrtckr.gamegenix.model.genres.GenresGame
 import com.mrtckr.gamegenix.ui.genres.adapter.GenresGameRecyclerAdapter
 import com.mrtckr.gamegenix.ui.genres.adapter.GenresSectionedAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -28,6 +29,8 @@ class GenresFragment @Inject constructor(
     private var genresNameList: ArrayList<String> = arrayListOf()
     override fun observeViewModel() {
         viewModel.genresList.observe(viewLifecycleOwner, Observer { resultData ->
+            genresList.clear()
+            genresNameList.clear()
             resultData.toData()?.results?.forEach {
                 genresNameList.add(it.name.toString())
             }
@@ -46,10 +49,6 @@ class GenresFragment @Inject constructor(
             layoutManager = GridLayoutManager(requireContext(), 1)
             adapter = gameRecyclerAdapter
         }
-
-        gameRecyclerAdapter.setOnItemClickListener { id, imageView, transitionName ->
-
-        }
     }
 
     private fun setSectionAdapter(genresDetail: GenresDetail, list: List<String>, gameList: List<GenresGame>) {
@@ -67,10 +66,18 @@ class GenresFragment @Inject constructor(
 
         var offset = 0
         list.onEachIndexed { index, entry ->
-            sections.add(GenresSectionedAdapter.Section(offset, entry.toUpperCase(Locale.ROOT),
-                genresDetail.results?.get(index)?.imageBackground.toString()))
-            items.add(entry)
-            offset += 6
+            try {
+                sections.add(
+                    GenresSectionedAdapter.Section(
+                        offset,
+                        entry.toUpperCase(Locale.ROOT),
+                        genresDetail.results?.get(index)?.imageBackground.toString()
+                    )
+                )
+                items.add(entry)
+                offset += 6
+            }
+            catch (e:Exception){}
         }
         mSectionedAdapter.setSections(sections)
         gameRecyclerAdapter.genreGameResult = gameList
@@ -81,6 +88,7 @@ class GenresFragment @Inject constructor(
 
     override fun onResume() {
         super.onResume()
+        setToolbarVisibility(View.VISIBLE)
         setToolbarTitle(this.requireContext().getString(R.string.app_name))
         setToolbarBackButtonVisibility(View.GONE)
     }

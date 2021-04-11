@@ -16,4 +16,13 @@
     <string name="by_rating">Puan</string>
     <string name="by_popularity">Popülerlik</string>
     <string name="by_updated">Güncellenme Tarihi</string>
+
+    <!-- Detail -->
+    <string name="updated_date">Güncellenme: %1$s</string>
+    <string name="released_date">Yayınlanma: %1$s</string>
+
+    <string name="meta_score">Meta Skor:</string>
+    <string name="publisher_text">Yapımcı: %1$s</string>
+    <string name="platforms">Platformlar</string>
+    <string name="stores">Mağazalar</string>
 </resources>

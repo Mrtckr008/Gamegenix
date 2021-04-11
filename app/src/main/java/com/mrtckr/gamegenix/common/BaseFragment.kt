@@ -100,6 +100,10 @@ abstract class BaseFragment<T : BaseViewModel, B : ViewDataBinding> : Fragment()
         (this.requireActivity() as MainActivity).binding.toolbarLayout.labelText = title
     }
 
+    fun setToolbarVisibility(visibility: Int){
+        (this.requireActivity() as MainActivity).binding.toolbarLayout.root.visibility = visibility
+    }
+
     fun setToolbarBackButtonVisibility(visibility : Int){
         (this.requireActivity() as MainActivity).binding.toolbarLayout.toolbarBackButton.visibility = visibility
     }

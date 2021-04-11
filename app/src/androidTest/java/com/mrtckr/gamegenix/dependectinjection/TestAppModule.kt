@@ -11,7 +11,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object TestAppModule {
+object  TestAppModule {
 
 
 

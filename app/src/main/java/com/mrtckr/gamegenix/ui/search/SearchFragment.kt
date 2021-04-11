@@ -56,10 +56,6 @@ class SearchFragment @Inject constructor(
         binding.gameListRecyclerView.adapter = gameRecyclerAdapter
         binding.gameListRecyclerView.layoutManager = GridLayoutManager(requireContext(),1)
 
-        gameRecyclerAdapter.setOnItemClickListener {
-
-        }
-
         binding.searchText.setOnEditorActionListener { textView, actionId, keyEvent ->
             var handled = false
             if(actionId == EditorInfo.IME_ACTION_SEARCH){

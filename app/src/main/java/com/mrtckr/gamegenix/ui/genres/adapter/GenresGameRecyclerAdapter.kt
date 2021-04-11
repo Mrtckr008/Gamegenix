@@ -1,21 +1,24 @@
 package com.mrtckr.gamegenix.ui.genres.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.model.genres.GenresGame
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class GenresGameRecyclerAdapter @Inject constructor(
+    @ApplicationContext val context: Context
 ) : RecyclerView.Adapter<GenresGameRecyclerAdapter.ImageViewHolder>() {
-
-    private var onItemClickListener : ((id: String,imageView: View, transitionName: String) -> Unit)? = null
 
     class ImageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
@@ -47,12 +50,6 @@ class GenresGameRecyclerAdapter @Inject constructor(
         return ImageViewHolder(view)
     }
 
-
-    fun setOnItemClickListener(listener : (id: String,imageView: View, transitionName: String) -> Unit) {
-        onItemClickListener = listener
-    }
-
-
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val gameText = holder.itemView.findViewById<TextView>(R.id.genreText)
         val viewTag = holder.itemView.tag
@@ -60,9 +57,10 @@ class GenresGameRecyclerAdapter @Inject constructor(
             gameText.text = genreGameResult[position].name
         }
         gameText.setOnClickListener {view->
-            onItemClickListener?.let {
-                genreGameResult[position].id?.let { it1 -> it(it.toString(),view,viewTag.toString()) }
-            }
+            val productIdBundle = bundleOf(context.getString(R.string.game_id_bundle_name) to genreGameResult[position].id)
+            Navigation.findNavController(view).navigate(
+                    R.id.action_navigation_genre_to_detailFragment, productIdBundle
+            )
         }
     }
 
