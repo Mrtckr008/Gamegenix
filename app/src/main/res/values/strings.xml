@@ -29,4 +29,7 @@
     <string name="stores">Stores</string>
     <string name="game_rating" translatable="false">%1$s/5</string>
     <string name="meta_score_value" translatable="false">%1$s/100</string>
+
+    <!--Splash-->
+    <string name="splash_transition_name" translatable="false">splash_transition</string>
 </resources>

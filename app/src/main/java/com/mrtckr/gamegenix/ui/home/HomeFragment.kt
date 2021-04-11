@@ -1,6 +1,7 @@
 package com.mrtckr.gamegenix.ui.home
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -9,9 +10,12 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
 import com.mrtckr.gamegenix.common.ResultData
+import com.mrtckr.gamegenix.common.gone
+import com.mrtckr.gamegenix.common.visible
 import com.mrtckr.gamegenix.databinding.FragmentHomeBinding
 import com.mrtckr.gamegenix.model.games.GameResult
 import com.mrtckr.gamegenix.model.games.SortingType
@@ -45,6 +49,12 @@ class HomeFragment @Inject constructor(
     }
 
     override fun viewCreated(view: View, savedInstanceState: Bundle?) {
+        val navBar: BottomNavigationView = this.requireActivity().findViewById(R.id.navView)
+        navBar.visible()
+
+        sharedElementEnterTransition = TransitionInflater.from(this.requireContext())
+            .inflateTransition(android.R.transition.move)
+
         viewModel.getGames(paginationCounter,"", SortingType.Default)
 
         binding.gameListRecyclerView.adapter = gameRecyclerAdapter

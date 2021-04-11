@@ -43,6 +43,7 @@
                 android:fontFamily="@font/lato_bold"
                 android:gravity="center"
                 android:maxLines="1"
+                android:transitionName="@string/splash_transition_name"
                 android:padding="1dp"
                 android:text='@{labelText}'
                 android:textColor="@color/palette5"
