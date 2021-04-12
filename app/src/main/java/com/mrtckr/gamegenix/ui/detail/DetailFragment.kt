@@ -6,6 +6,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
+import com.huawei.hms.ads.AdListener
+import com.huawei.hms.ads.AdParam
+import com.huawei.hms.ads.InterstitialAd
 import com.mrtckr.gamegenix.R
 import com.mrtckr.gamegenix.common.BaseFragment
 import com.mrtckr.gamegenix.databinding.FragmentDetailBinding
@@ -45,9 +48,9 @@ class DetailFragment(
     }
 
     override fun viewCreated(view: View, savedInstanceState: Bundle?) {
-        gameId =
-            arguments?.get(this.requireContext().getString(R.string.game_id_bundle_name)) as Int
+        gameId = arguments?.get(this.requireContext().getString(R.string.game_id_bundle_name)) as Int
         viewModel.getGame(gameId)
+        loadHMSInterstitialAd()
     }
 
     private fun setupUI(gameData: GameDetail) {
@@ -100,5 +103,25 @@ class DetailFragment(
         setToolbarVisibility(View.GONE)
         setToolbarTitle(this.requireContext().getString(R.string.app_name))
         setToolbarBackButtonVisibility(View.GONE)
+    }
+
+    private fun loadHMSInterstitialAd(){
+        val interstitialAd = InterstitialAd(this.requireContext())
+        interstitialAd.adId = "testb4znbuh3n2"
+        val adParam = AdParam.Builder().build()
+        interstitialAd.loadAd(adParam)
+
+        val adListener: AdListener = object : AdListener() {
+            override fun onAdLoaded() {
+                interstitialAd.show(this@DetailFragment.requireActivity())
+            }
+            override fun onAdFailed(errorCode: Int) {}
+            override fun onAdClosed() {}
+            override fun onAdClicked() {}
+            override fun onAdLeave() {}
+            override fun onAdOpened() {}
+            override fun onAdImpression() {}
+        }
+        interstitialAd.adListener = adListener
     }
 }

@@ -34,6 +34,7 @@
         android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="#EAEAEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
